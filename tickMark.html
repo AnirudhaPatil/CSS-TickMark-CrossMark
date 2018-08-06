@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mark</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tick-container {
+      height: 30px;
+      width: 30px;
+      background: #eee;
+      border-radius: 50%;
+      border: 3px solid green;
+      /* transform: translate(50%, 50%);*/
+      position: relative;
+    }
+
+    .tick-mark {
+      height: 10px;
+      width: 20px;
+      border-left: 3px solid green;
+      border-bottom: 3px solid green;
+      transform: rotate(-45deg);
+      position: absolute;
+      left: 3px;
+      top: 6px;
+    }
+
+
+    .cross-container {
+      height: 30px;
+      width: 30px;
+      background: #eee;
+      border-radius: 50%;
+      border: 3px solid red;
+      /* transform: translate(50%, 50%);*/
+      position: relative;
+    }
+
+    .cross-mark {
+      height: 10px;
+      width: 20px;
+      /* border-left: 3px solid red; */
+      /* border-bottom: 3px solid red; */
+      position: absolute;
+      left: 3px;
+      top: 6px;
+    }
+
+    .cross-mark::before {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      height: 20px;
+      border-left: 3px solid red;
+      transform: rotate(-45deg);
+      left: 10px;
+      top: -1px;
+    }
+
+    .cross-mark::after {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      height: 20px;
+      border-right: 3px solid red;
+      transform: rotate(45deg);
+      left: 10px;
+      top: -1px;
+    }
+
+    .animate-container {
+      height: 30px;
+      width: 30px;
+      background: #eee;
+      border-radius: 50%;
+      border: 3px solid green;
+      position: relative;
+    }
+
+    .animate-mark {
+      height: 10px;
+      width: 20px;
+      border-left: 3px solid green;
+      border-bottom: 3px solid green;
+      transform: rotate(-45deg);
+      position: absolute;
+      left: 3px;
+      top: 6px;
+    }
+
+    .animate-container:hover {
+      transition: .5s;
+      border: 3px solid red;
+    }
+
+    /* animate-container:hover .animate-mark {
+      transition: .5s;
+      border: none;
+    } */
+
+    .animate-container:hover::before {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      height: 20px;
+      border-left: 3px solid red;
+      transform: rotate(-45deg);
+      left: 14px;
+      top: 4px;
+    }
+
+    .animate-container:hover::after {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      height: 20px;
+      border-right: 3px solid red;
+      transform: rotate(45deg);
+      left: 14px;
+      top: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tick-container">
+    <div class="tick-mark"></div>
+  </div>
+
+  <div class="cross-container">
+    <div class="cross-mark"></div>
+  </div>
+
+  <div class="animate-container">
+    <div class="animate-mark"></div>
+  </div>
+</body>
+<script>
+  let container = document.querySelector('.animate-container');
+  let item = document.querySelector('.animate-mark');
+
+  container.addEventListener("mouseover", function() {
+    item.style.border = 'none';
+  });
+  container.addEventListener("mouseleave", function() {
+    item.style.borderLeft = '3px solid green';
+    item.style.borderBottom = '3px solid green';
+    item.style.transition = '.5s';
+    this.style.transition = '.5s';
+  });
+</script>
+
+</html>
